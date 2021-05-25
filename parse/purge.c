@@ -12,7 +12,7 @@ void    *dollar_exception_yes_pipes(char        **env, t_format    *rtp)
     while (ptr != NULL)
     {
         arg_ptr = ptr->arguments;
-        if (ptr->command != NULL && ptr->command[0] == '$')
+        if (ptr->command != NULL && ptr->command[0] == '$' && ptr->command[1] != '\0')
         {
             data->variable_name = fetch_var_name(ptr->command, 1);
             data->variable_content = fetch_variable_content(env, data->variable_name);
@@ -101,7 +101,7 @@ void    *dollar_exceptions_no_pipes(char        **env, t_format    *ptr)
     data = malloc(sizeof(t_var_rep));
     arg_ptr = ptr->arguments;
 
-    if (ptr->command != NULL && ptr->command[0] == '$')
+    if (ptr->command != NULL && ptr->command[0] == '$' && ptr->command[1] != '\0')
     {
         data->variable_name = fetch_var_name(ptr->command, 1);
         data->variable_content = fetch_variable_content(env, data->variable_name);
