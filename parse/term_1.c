@@ -48,7 +48,7 @@ void    put_strings(char    *s1, char   *s2, char   *s3, char   *s4)
     if (s4 != NULL)
         write(1, s4, ft_strlen(s4));
 }
-void		init_lst(t_toolbox   *box)
+void		init_history(t_toolbox   *box)
 {
     box->ptr->previous = NULL;
 	box->ptr->next = NULL;
@@ -123,12 +123,11 @@ void    full_ws_da(t_toolbox   *box)
 	box->tmp = box->ptr;
 	box->ptr = box->ptr->next;
 	box->str = calloc(1,1);
-	init_lst(box);
+	init_history(box);
 	box->ptr->previous = box->tmp;
-    put_strings("\nminishell~$ ",NULL,NULL,NULL);
 }
 
-void    *enter_key(t_toolbox    *box, t_node    **head)
+void    enter_key(t_toolbox    *box, t_node    **head)
 {
 	if (my_strcmp(box->str, "") != 0)
 	{
@@ -137,14 +136,13 @@ void    *enter_key(t_toolbox    *box, t_node    **head)
             update_position(box);
 		box->ptr->line = box->str;
 		if (box->i == 0)
-        {
-            if (full_ws_niet(box, head) == NULL)
-                return (NULL);
-        }
+            full_ws_niet(box, head);
 		else
+        {
             full_ws_da(box);
+            put_strings("\nminishell~$ ",NULL,NULL,NULL);
+        }
 	}
 	else if(my_strcmp(box->str, "") == 0)
         put_strings("\nminishell~$ ",NULL,NULL,NULL);
-    return ("done");
 }

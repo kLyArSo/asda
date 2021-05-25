@@ -161,7 +161,7 @@ char                *fetch_input();
 //-------------main.c----------------//
 void	   	        *init_all(t_toolbox   *box);
 void                put_strings(char    *s1, char   *s2, char   *s3, char   *s4);
-void		        init_lst(t_toolbox   *box);
+void		        init_history(t_toolbox   *box);
 void                printable_key(t_toolbox   *box);
 void                delete_key(t_toolbox   *box);
 void                up_key(t_toolbox   *box);
@@ -170,7 +170,7 @@ void                ctrl_d_key(t_toolbox   *box);
 void                update_position(t_toolbox   *box);
 void                *full_ws_niet(t_toolbox     *box, t_node    **head);
 void                full_ws_da(t_toolbox   *box);
-void                *enter_key(t_toolbox    *box, t_node    **head);
+void                enter_key(t_toolbox    *box, t_node    **head);
 t_node              *init_shell(char        **env);
 t_toolbox           *parse_init();
 //-------------main.c----------------//
@@ -264,3 +264,7 @@ static	char		*ft_printneg(unsigned int nb, char *s, int k);
 static	int			ft_counter(int n);
 static	int			check_neg(int n);
 //---------------------ft_itoa.c----------//
+void                free_history();
+void                free_tformat();
+void                yes_pipes_free(t_format  *tmp);
+void                no_pipes_free(t_format  *ptr);
