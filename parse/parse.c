@@ -33,26 +33,31 @@ t_linedata      *split_id(char   *input)
     return (tmp);
 }
 
-char     *parse(char *input, t_format    *ptr)
+char     *parse(t_toolbox    *box)
 {
-    char *str;
-    if (ptr == NULL)
+    char        *str;
+    t_format    *ptr;
+    
+    ptr = box->formaptr;
+    if (ptr == NULL
+    || box->str == NULL
+    || my_strcmp(box->str, "") == 0)
         return (NULL);
-    if (input == NULL)
-        return (NULL);
-    if(strcmp(input, "") == 0)
-        return (NULL);
-    str = error_check(input);
+
+    str = error_check(box->str);
     if (my_strcmp(str, "Unmatched_Quotes") == 0
-        ||my_strcmp(str, "Redirection_error") == 0
-        || my_strcmp(str, "Syntax_error") == 0
-        || my_strcmp(str, "Back_slash_Error") == 0)
-        return (str);
-    input = last_check(input);
-    if (input == NULL)
-        return (NULL);
-    if (semicolon_split(ptr, input) == NULL
-    || pipe_split(ptr) == NULL)
-        return (NULL);
+    || my_strcmp(str, "Redirection_error") == 0
+    || my_strcmp(str, "Syntax_error") == 0
+    || my_strcmp(str, "Back_slash_Error") == 0)
+        box->check = str;
+    else
+    {
+        last_check(box);
+        if (box->str == NULL)
+            return (NULL);
+        if (semicolon_split(ptr, box->str) == NULL
+        || pipe_split(ptr) == NULL)
+            return (NULL);
+    }
     return ("done");
 }

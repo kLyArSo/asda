@@ -169,7 +169,7 @@ void                down_key(t_toolbox   *box);
 void                ctrl_d_key(t_toolbox   *box);
 void                update_position(t_toolbox   *box);
 void                *full_ws_niet(t_toolbox     *box, t_node    **head);
-void                full_ws_da(t_toolbox   *box);
+void                init_history(t_toolbox   *box);
 void                *enter_key(t_toolbox    *box, t_node    **head);
 t_node              *init_shell(char        **env);
 t_toolbox           *parse_init();
@@ -178,7 +178,7 @@ t_toolbox           *parse_init();
 //--------------parse.c--------------//
 void                initialise(t_bag       **bag, t_linedata **data, t_linedata  **tmp);
 t_linedata          *split_id(char   *input);
-char                *parse(char *input, t_format    *ptr);
+char                *parse(t_toolbox    *box);
 //--------------parse.c--------------//
 
 //--------------pipes.c---------------//
@@ -219,7 +219,7 @@ void                skip_un(char    *input, int i, int *a);
 t_format            *fetch(t_format    *ptr, char   *input, int    *start, int i);
 void                *semicolon_split(t_format    *ptr, char     *input);
 void                printf_individual_lines(t_format    *ptr);
-char                *last_check(char *input);
+char                *last_check(t_toolbox *box);
 //-------------semi_split.c-------------//
 
 
@@ -247,7 +247,6 @@ int                 put_char(int c);
 char	            *delete_char(char	*str);
 int		            all_sp(char	*str);
 //-----------------term.c----------------//
-
 //------------------utils.c--------------//
 int                 ft_test_char(char   *str, char c);
 int                 is_white_space(char c);

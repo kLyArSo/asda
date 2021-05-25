@@ -38,6 +38,8 @@ char    *trim_spaces(char *input)
     && back_slash_presence(input, end - 1) == 0)
         end--;
     result = ft_substr(input, start, end);
+    free(input);
+    input = NULL;
     return(result);
 }
 
@@ -88,36 +90,46 @@ void    *semicolon_split(t_format    *ptr, char     *input)
     return ("done");
 }
 
-void    printf_individual_lines(t_format    *ptr)
+char    *ft_substr_1(char *str, int start, int end)
 {
-    while(ptr->next != NULL)
-    {
-        printf("<%s>\n", ptr->line);
-        ptr = ptr->next;
-    }
-    printf("<%s>\n", ptr->line);
-}
+    int i;
+    char    *result;
 
-char    *last_check(char *input)
+    i = 0;
+    if (str == NULL)
+        return (NULL);
+    result = my_calloc(end - start + 2);
+    while (start <= end)
+    {
+        result[i] = str[start];
+        start++;
+        i++;
+    }
+    free(str);
+    str = NULL;
+    return (result);
+}
+char    *last_check(t_toolbox *box)
 {
     int     start;
     int     end;
+    char    *tmp;
     char    *result;
 
     start = 0;
-    if (input == NULL)
+    if (box->str == NULL)
         return(NULL);
-    while(input[start] != 0
-    && is_white_space(input[start]) == 1)
+    while(box->str[start] != 0
+    && is_white_space(box->str[start]) == 1)
         start++;
-    end = ft_strlen(input) - 1;
+    end = ft_strlen(box->str) - 1;
     while (end >= 0
-    && is_white_space(input[end]) == 1
-    && back_slash_presence(input, end - 1) == 0)
+    && is_white_space(box->str[end]) == 1
+    && back_slash_presence(box->str, end - 1) == 0)
         end--;
-    if (input[end] == ';'
-    && back_slash_presence(input, end - 1) == 0)
+    if (box->str[end] == ';'
+    && back_slash_presence(box->str, end - 1) == 0)
         end--;
-    result = ft_substr(input, start, end);
-    return(result);
+    box->str = ft_substr_1(box->str, start, end);
+    return("done");
 }

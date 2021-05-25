@@ -187,7 +187,7 @@ void    assignments(t_format    *ptr)
 
 void        *pipe_split(t_format    *ptr)
 {
-    while (1)
+    while (ptr != NULL)
     {
         ptr->pipe_presence = pipe_presence(ptr->line);
         if (ptr->pipe_presence == 0)
@@ -199,8 +199,6 @@ void        *pipe_split(t_format    *ptr)
                 return (NULL);
         }
         ptr = ptr->next;
-        if (ptr == NULL)
-            break ;
     }
     return ("done");
 }

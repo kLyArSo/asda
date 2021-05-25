@@ -35,9 +35,9 @@ int     da_loop(char    *input, int i)
 char        *error_check(char    *input)
 {
     int     i;
+    char    *str;
 
     i = 0;
-    char *str;
     while (input[i] != 0)
     {
         i = da_loop(input, i);

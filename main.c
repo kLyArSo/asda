@@ -34,15 +34,11 @@ void    shlvl(t_node **head)
 
 void    *full_ws_niet(t_toolbox     *box, t_node    **head)
 {
-	box->check = parse(box->str, box->formaptr);
+	parse(box);
 	if (my_strcmp(box->check, "Unmatched_Quotes") == 0
-	|| my_strcmp(box->check, "Back_slash_Error") == 0)
-	{
-        put_strings("\n> ",NULL,NULL,NULL);
-        return (NULL);
-	}
-	else if (my_strcmp(box->check, "Redirection_error") == 0
-			|| my_strcmp(box->check, "Syntax_error") == 0)
+	|| my_strcmp(box->check, "Back_slash_Error") == 0
+    || my_strcmp(box->check, "Redirection_error") == 0
+	|| my_strcmp(box->check, "Syntax_error") == 0)
 	{
         put_strings("\n",box->check,"\nminishell~$ ",NULL);
 		free(box->str);
@@ -50,16 +46,13 @@ void    *full_ws_niet(t_toolbox     *box, t_node    **head)
 		box->ptr->line = box->str;
 	}
 	else
-	{
+	{ 
         write(1, "\n", 1);
-		ft_exec(box->formaptr, head);
+        printf("%p\n", box->ptr);
+		//ft_exec(box->formaptr, head);
 		//print_da(box->formaptr);
-        box->ptr->next = malloc(sizeof(t_history));
-		box->tmp = box->ptr;
-		box->ptr = box->ptr->next;
-		box->str = calloc(1,1);
-		init_lst(box);
-		box->ptr->previous = box->tmp;
+        free_tformat();
+        init_history(box);
         put_strings("minishell~$ ",NULL,NULL,NULL);
 	}
     return ("done");
@@ -156,8 +149,7 @@ int     main(int    argc, char      **argv, char        **env)
 		else if (box->ascii == ENTER_KEY)//enter
         {
 	        tcsetattr(0, TCSANOW, &box->old);
-            if (enter_key(box, &head) == NULL)
-                continue ;
+            enter_key(box, &head);
         }
     }
     return (0);
