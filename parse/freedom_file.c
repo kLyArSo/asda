@@ -38,14 +38,12 @@ void    free_tformat()
             yes_pipes_free(ptr);
         ptr = ptr->next;
     }
-    ptr = tmp;
-    tmp = ptr->next;
-    ptr->next = NULL;
-    ptr = tmp;
+    ptr = tmp->next;
     while(ptr != NULL)//free all nodes except for the first one
     {
         tmp = ptr->next;
         free(ptr);
         ptr = tmp;
     }
+    g_global.box->formaptr->next = NULL;
 }

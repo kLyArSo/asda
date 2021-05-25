@@ -119,12 +119,12 @@ void    update_position(t_toolbox   *box)
 }
 void    full_ws_da(t_toolbox   *box)
 {
-	box->ptr->next = malloc(sizeof(t_history));
-	box->tmp = box->ptr;
-	box->ptr = box->ptr->next;
-	box->str = calloc(1,1);
-	init_history(box);
-	box->ptr->previous = box->tmp;
+	box->ptr->next = malloc(sizeof(t_history));//allocate new history node
+	box->tmp = box->ptr;//store previous in tmp
+	box->ptr = box->ptr->next;//move to next
+	init_history(box); //init next history node
+	box->ptr->previous = box->tmp;//set previous node
+    box->str = my_calloc(1);//alloc str;
 }
 
 void    enter_key(t_toolbox    *box, t_node    **head)

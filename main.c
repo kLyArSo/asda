@@ -41,6 +41,8 @@ void    *full_ws_niet(t_toolbox     *box, t_node    **head)
 	|| my_strcmp(box->check, "Syntax_error") == 0)
 	{
         put_strings("\n",box->check,"\nminishell~$ ",NULL);
+        free(box->check);
+        box->check = NULL;
 		free(box->str);
 		box->str = calloc(1,1);
 		box->ptr->line = box->str;
@@ -48,7 +50,8 @@ void    *full_ws_niet(t_toolbox     *box, t_node    **head)
 	else
 	{
         write(1, "\n", 1);
-		ft_exec(box->formaptr, head);
+		//ft_exec(box->formaptr, head);
+        free_tformat();
         put_strings("minishell~$ ",NULL,NULL,NULL);
 	}
     full_ws_da(box);
@@ -134,13 +137,13 @@ int     main(int    argc, char      **argv, char        **env)
 		box->ascii = fetch_char(&box->old);
 		if (box->ascii >= 32 && box->ascii <= 126)//all printable chars
             printable_key(box);
-		else if (box->ascii == DELETE_KEY)//delete char
-            delete_key(box);
-		else if (box->ascii == UP_KEY)
-            up_key(box);
-		else if (box->ascii == DOWN_KEY)
-            down_key(box);
-		else if (box->ascii == CTRL_D)
+		//else if (box->ascii == DELETE_KEY)//delete char
+        //    delete_key(box);
+		//else if (box->ascii == UP_KEY)
+        //    up_key(box);
+		//else if (box->ascii == DOWN_KEY)
+        //    down_key(box);
+        else if (box->ascii == CTRL_D)
             ctrl_d_key(box);
 		else if (box->ascii == ENTER_KEY)//enter
         {
