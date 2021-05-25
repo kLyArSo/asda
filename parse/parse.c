@@ -33,32 +33,26 @@ t_linedata      *split_id(char   *input)
     return (tmp);
 }
 
-char     *parse(t_toolbox   *box)
+char     *parse(char *input, t_format    *ptr)
 {
     char *str;
-    t_format    *ptr;
-    
-    ptr = box->formaptr;
     if (ptr == NULL)
         return (NULL);
-    if (box->str == NULL)
+    if (input == NULL)
         return (NULL);
-    if(my_strcmp(box->str, "") == 0)
+    if(strcmp(input, "") == 0)
         return (NULL);
-    str = error_check(box->str);
+    str = error_check(input);
     if (my_strcmp(str, "Unmatched_Quotes") == 0
-    ||my_strcmp(str, "Redirection_error") == 0
-    || my_strcmp(str, "Syntax_error") == 0
-    || my_strcmp(str, "Back_slash_Error") == 0)
-        box->check = str;
-    else
-    {
-        box->str = last_check(box->str);
-        if (box->str == NULL)
-            return (NULL);
-        if (semicolon_split(ptr, box->str) == NULL
-        || pipe_split(ptr) == NULL)
-            return (NULL);
-    }
+        ||my_strcmp(str, "Redirection_error") == 0
+        || my_strcmp(str, "Syntax_error") == 0
+        || my_strcmp(str, "Back_slash_Error") == 0)
+        return (str);
+    input = last_check(input);
+    if (input == NULL)
+        return (NULL);
+    if (semicolon_split(ptr, input) == NULL
+    || pipe_split(ptr) == NULL)
+        return (NULL);
     return ("done");
 }

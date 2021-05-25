@@ -34,15 +34,17 @@ void    shlvl(t_node **head)
 
 void    *full_ws_niet(t_toolbox     *box, t_node    **head)
 {
-	parse(box);
+	box->check = parse(box->str, box->formaptr);
 	if (my_strcmp(box->check, "Unmatched_Quotes") == 0
-	|| my_strcmp(box->check, "Back_slash_Error") == 0
-    || my_strcmp(box->check, "Redirection_error") == 0
-	|| my_strcmp(box->check, "Syntax_error") == 0)
+	|| my_strcmp(box->check, "Back_slash_Error") == 0)
+	{
+        put_strings("\n> ",NULL,NULL,NULL);
+        return (NULL);
+	}
+	else if (my_strcmp(box->check, "Redirection_error") == 0
+			|| my_strcmp(box->check, "Syntax_error") == 0)
 	{
         put_strings("\n",box->check,"\nminishell~$ ",NULL);
-        free(box->check);
-        box->check = NULL;
 		free(box->str);
 		box->str = calloc(1,1);
 		box->ptr->line = box->str;
@@ -50,13 +52,19 @@ void    *full_ws_niet(t_toolbox     *box, t_node    **head)
 	else
 	{
         write(1, "\n", 1);
-		//ft_exec(box->formaptr, head);
-        free_tformat();
+		ft_exec(box->formaptr, head);
+		//print_da(box->formaptr);
+        box->ptr->next = malloc(sizeof(t_history));
+		box->tmp = box->ptr;
+		box->ptr = box->ptr->next;
+		box->str = calloc(1,1);
+		init_lst(box);
+		box->ptr->previous = box->tmp;
         put_strings("minishell~$ ",NULL,NULL,NULL);
-        full_ws_da(box);
 	}
     return ("done");
 }
+
 void handler(int sig)
 {
     if (g_global.forked == 1)
@@ -139,16 +147,17 @@ int     main(int    argc, char      **argv, char        **env)
             printable_key(box);
 		else if (box->ascii == DELETE_KEY)//delete char
             delete_key(box);
-		//else if (box->ascii == UP_KEY)
-        //    up_key(box);
-		//else if (box->ascii == DOWN_KEY)
-        //    down_key(box);
-        else if (box->ascii == CTRL_D)
+		else if (box->ascii == UP_KEY)
+            up_key(box);
+		else if (box->ascii == DOWN_KEY)
+            down_key(box);
+		else if (box->ascii == CTRL_D)
             ctrl_d_key(box);
 		else if (box->ascii == ENTER_KEY)//enter
         {
 	        tcsetattr(0, TCSANOW, &box->old);
-            enter_key(box, &head);
+            if (enter_key(box, &head) == NULL)
+                continue ;
         }
     }
     return (0);

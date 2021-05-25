@@ -48,7 +48,7 @@ void    put_strings(char    *s1, char   *s2, char   *s3, char   *s4)
     if (s4 != NULL)
         write(1, s4, ft_strlen(s4));
 }
-void		init_history(t_toolbox   *box)
+void		init_lst(t_toolbox   *box)
 {
     box->ptr->previous = NULL;
 	box->ptr->next = NULL;
@@ -70,6 +70,10 @@ void    delete_key(t_toolbox   *box)
 		tputs(tgetstr("dc",NULL), 1, put_char);//delete char
 	}
 }
+
+
+
+
 
 void    up_key(t_toolbox   *box)
 {
@@ -115,15 +119,16 @@ void    update_position(t_toolbox   *box)
 }
 void    full_ws_da(t_toolbox   *box)
 {
-	box->ptr->next = malloc(sizeof(t_history));//allocate new history node
-	box->tmp = box->ptr;//store previous in tmp
-	box->ptr = box->ptr->next;//move to next
-	init_history(box); //init next history node
-	box->ptr->previous = box->tmp;//set previous node
-    box->str = my_calloc(1);//alloc str;
+	box->ptr->next = malloc(sizeof(t_history));
+	box->tmp = box->ptr;
+	box->ptr = box->ptr->next;
+	box->str = calloc(1,1);
+	init_lst(box);
+	box->ptr->previous = box->tmp;
+    put_strings("\nminishell~$ ",NULL,NULL,NULL);
 }
 
-void    enter_key(t_toolbox    *box, t_node    **head)
+void    *enter_key(t_toolbox    *box, t_node    **head)
 {
 	if (my_strcmp(box->str, "") != 0)
 	{
@@ -132,13 +137,14 @@ void    enter_key(t_toolbox    *box, t_node    **head)
             update_position(box);
 		box->ptr->line = box->str;
 		if (box->i == 0)
-            full_ws_niet(box, head);
-		else
         {
-            full_ws_da(box);
-            put_strings("\nminishell~$ ",NULL,NULL,NULL);
+            if (full_ws_niet(box, head) == NULL)
+                return (NULL);
         }
+		else
+            full_ws_da(box);
 	}
 	else if(my_strcmp(box->str, "") == 0)
         put_strings("\nminishell~$ ",NULL,NULL,NULL);
+    return ("done");
 }

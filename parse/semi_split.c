@@ -38,8 +38,6 @@ char    *trim_spaces(char *input)
     && back_slash_presence(input, end - 1) == 0)
         end--;
     result = ft_substr(input, start, end);
-    free(input);
-    input = NULL;
     return(result);
 }
 
@@ -121,7 +119,5 @@ char    *last_check(char *input)
     && back_slash_presence(input, end - 1) == 0)
         end--;
     result = ft_substr(input, start, end);
-    free(input);
-    input = NULL;
     return(result);
 }
