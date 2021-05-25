@@ -34,7 +34,7 @@ void    shlvl(t_node **head)
 
 void    *full_ws_niet(t_toolbox     *box, t_node    **head)
 {
-	box->check = parse(box->str, box->formaptr);
+	parse(box);
 	if (my_strcmp(box->check, "Unmatched_Quotes") == 0
 	|| my_strcmp(box->check, "Back_slash_Error") == 0
     || my_strcmp(box->check, "Redirection_error") == 0
@@ -53,8 +53,8 @@ void    *full_ws_niet(t_toolbox     *box, t_node    **head)
 		//ft_exec(box->formaptr, head);
         free_tformat();
         put_strings("minishell~$ ",NULL,NULL,NULL);
+        full_ws_da(box);
 	}
-    full_ws_da(box);
     return ("done");
 }
 void handler(int sig)
@@ -137,8 +137,8 @@ int     main(int    argc, char      **argv, char        **env)
 		box->ascii = fetch_char(&box->old);
 		if (box->ascii >= 32 && box->ascii <= 126)//all printable chars
             printable_key(box);
-		//else if (box->ascii == DELETE_KEY)//delete char
-        //    delete_key(box);
+		else if (box->ascii == DELETE_KEY)//delete char
+            delete_key(box);
 		//else if (box->ascii == UP_KEY)
         //    up_key(box);
 		//else if (box->ascii == DOWN_KEY)

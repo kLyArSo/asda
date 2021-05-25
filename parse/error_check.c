@@ -121,12 +121,18 @@ int     redirection_error_check(char *input, int i)
     end = i - 1;
     str = ft_substr(input, start, end);
     if (my_strcmp(">", str) != 0 && my_strcmp(">>", str) != 0 && my_strcmp("<", str) != 0 && my_strcmp("<>", str) != 0)
+    {
+        free(str);
+        str = NULL;
         return (-1);
+    }
     while (input[i] != 0 && is_white_space(input[i]) == 1) // skips all spaces
     {
         i++;
         counter++;
     }
+    free(str);
+    str = NULL;
     return (error_suite(counter, input, i, str));   
 }
 

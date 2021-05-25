@@ -71,10 +71,6 @@ void    delete_key(t_toolbox   *box)
 	}
 }
 
-
-
-
-
 void    up_key(t_toolbox   *box)
 {
 	tputs(tgoto(tgetstr("ch", NULL), 0, 0), 1, put_char);

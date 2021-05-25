@@ -178,7 +178,7 @@ t_toolbox           *parse_init();
 //--------------parse.c--------------//
 void                initialise(t_bag       **bag, t_linedata **data, t_linedata  **tmp);
 t_linedata          *split_id(char   *input);
-char                *parse(char *input, t_format    *ptr);
+char                *parse(t_toolbox    *box);
 //--------------parse.c--------------//
 
 //--------------pipes.c---------------//
