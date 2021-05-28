@@ -25,14 +25,12 @@ int     pipe_presence(char *input)
 
 char    *fetch_command(t_linedata *data)
 {
-    while(data->next != NULL)
+    while(data != NULL)
     {
         if (data->command == 1)
             return (data->slice);
         data = data->next;
     }
-    if (data->command == 1)
-        return (data->slice);
     return (NULL);
 }
 t_arguments     *f_16(t_arguments     *ptr, t_linedata *data)
@@ -48,7 +46,7 @@ t_arguments    *fetch_arguments(t_linedata *data, t_arguments *ret, int counter)
 {
     t_arguments     *ptr;
 
-    while(1)
+    while(data != NULL)
     {
         if (data->command == 0 && data->argument == 1)
         {
@@ -64,8 +62,6 @@ t_arguments    *fetch_arguments(t_linedata *data, t_arguments *ret, int counter)
                 ptr = f_16(ptr, data);
         }
         data = data->next;
-        if (data == NULL)
-            break ;
     }
     return (ret);
 }
@@ -158,6 +154,7 @@ void    ft_end(t_format    *ptr, int *i, int start)
 void    *fetch_pipes(t_format    *ptr, int start, int i)
 {
     t_pipes *tmp;
+
     ptr->pipes = malloc(sizeof(t_pipes));
     tmp = ptr->pipes;
     while (ptr->line[i] != 0)

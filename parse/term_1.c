@@ -48,7 +48,7 @@ void    put_strings(char    *s1, char   *s2, char   *s3, char   *s4)
     if (s4 != NULL)
         write(1, s4, ft_strlen(s4));
 }
-void		init_lst(t_toolbox   *box)
+void		init_history_node_data(t_toolbox   *box)
 {
     box->ptr->previous = NULL;
 	box->ptr->next = NULL;
@@ -83,6 +83,7 @@ void    up_key(t_toolbox   *box)
 	if (box->ptr->previous != NULL)
     {
 	    box->ptr = box->ptr->previous;
+        free(box->str);
 	    box->str = ft_strdupe(box->ptr->line);
     }
     put_strings(box->str,NULL,NULL,NULL);
@@ -96,6 +97,7 @@ void    down_key(t_toolbox   *box)
 	if (box->ptr->next != NULL)
     {
 		box->ptr = box->ptr->next;
+        free(box->str);
 	    box->str = ft_strdupe(box->ptr->line);
     }
     put_strings(box->str,NULL,NULL,NULL);
@@ -117,14 +119,14 @@ void    update_position(t_toolbox   *box)
     while (box->ptr->next != NULL)
 	    box->ptr = box->ptr->next;
 }
-void    init_history(t_toolbox   *box)
+void    next_history_node(t_toolbox   *box)
 {
     box->ptr->line = box->str;
 	box->ptr->next = malloc(sizeof(t_history));
 	box->tmp = box->ptr;
 	box->ptr = box->ptr->next;
-	box->str = calloc(1,1);
-	init_lst(box);
+	box->str = my_calloc(1);
+	init_history_node_data(box);
 	box->ptr->previous = box->tmp;
 }
 
@@ -139,7 +141,7 @@ void    *enter_key(t_toolbox    *box, t_node    **head)
             full_ws_niet(box, head);
 		else
         {
-            init_history(box);
+            next_history_node(box);
             put_strings("\nminishell~$ ",NULL,NULL,NULL);
         }
 	}

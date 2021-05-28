@@ -34,16 +34,16 @@ void    shlvl(t_node **head)
 
 void    *full_ws_niet(t_toolbox     *box, t_node    **head)
 {
-	parse(box);
+	box->check = parse(box);
 	if (my_strcmp(box->check, "Unmatched_Quotes") == 0
 	|| my_strcmp(box->check, "Back_slash_Error") == 0
     || my_strcmp(box->check, "Redirection_error") == 0
 	|| my_strcmp(box->check, "Syntax_error") == 0)
 	{
         put_strings("\n",box->check,"\nminishell~$ ",NULL);
-		free(box->str);
-		box->str = calloc(1,1);
-		box->ptr->line = box->str;
+		free(box->check);
+        box->check = NULL;
+        next_history_node(box);
 	}
 	else
 	{ 
@@ -52,7 +52,7 @@ void    *full_ws_niet(t_toolbox     *box, t_node    **head)
 		//ft_exec(box->formaptr, head);
 		//print_da(box->formaptr);
         free_tformat();
-        init_history(box);
+        next_history_node(box);
         put_strings("minishell~$ ",NULL,NULL,NULL);
 	}
     return ("done");

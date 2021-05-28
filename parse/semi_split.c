@@ -113,8 +113,6 @@ char    *last_check(t_toolbox *box)
 {
     int     start;
     int     end;
-    char    *tmp;
-    char    *result;
 
     start = 0;
     if (box->str == NULL)

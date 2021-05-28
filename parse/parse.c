@@ -30,6 +30,8 @@ t_linedata      *split_id(char   *input)
         if (input[bag->i] == 0)
             eof(input, bag, data);
     }
+    free(bag);
+    bag = NULL;
     return (tmp);
 }
 
@@ -44,12 +46,12 @@ char     *parse(t_toolbox    *box)
     || my_strcmp(box->str, "") == 0)
         return (NULL);
 
-    str = error_check(box->str);
+    str = error_check(box->str);//all good here
     if (my_strcmp(str, "Unmatched_Quotes") == 0
     || my_strcmp(str, "Redirection_error") == 0
     || my_strcmp(str, "Syntax_error") == 0
     || my_strcmp(str, "Back_slash_Error") == 0)
-        box->check = str;
+        return (str);
     else
     {
         last_check(box);

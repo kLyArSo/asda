@@ -75,7 +75,6 @@ void    yes_pipes_free(t_format  *tmp)
             free_arg_nodes_yp(ptr);
         if (ptr->redirections != NULL)
             free_red_nodes_yp(ptr);
-            ptr = ptr->next;
+        ptr = ptr->next;
     }
-    tmp->pipes = NULL;
 }
