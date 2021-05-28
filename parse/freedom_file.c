@@ -51,8 +51,6 @@ void    free_tformat()
             free(ptr->line);
             ptr->line = NULL;
             yes_pipes_free(ptr);
-            //free(ptr->pipes);
-            //ptr->pipes = NULL;
         }
         ptr = ptr->next;
     }

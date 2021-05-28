@@ -57,8 +57,9 @@ char     *parse(t_toolbox    *box)
         last_check(box);
         if (box->str == NULL)
             return (NULL);
-        if (semicolon_split(ptr, box->str) == NULL
-        || pipe_split(ptr) == NULL)
+        if (semicolon_split(ptr, box->str) == NULL)
+            return (NULL);
+        if (pipe_split(ptr) == NULL)
             return (NULL);
     }
     return ("done");

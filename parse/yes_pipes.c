@@ -58,6 +58,7 @@ void    free_red_nodes_yp(t_pipes *ptr)
 void    yes_pipes_free(t_format  *tmp)
 {
     t_pipes *ptr;
+    t_pipes *temp;
 
     ptr = tmp->pipes;
     while(ptr != NULL)
@@ -77,4 +78,13 @@ void    yes_pipes_free(t_format  *tmp)
             free_red_nodes_yp(ptr);
         ptr = ptr->next;
     }
+    ptr = tmp->pipes;
+    while(ptr != NULL)
+    {
+        temp = ptr->next;
+        free(ptr);
+        ptr = temp;
+    }
+    ptr = NULL;
+
 }
