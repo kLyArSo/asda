@@ -48,8 +48,7 @@ void    *full_ws_niet(t_toolbox     *box, t_node    **head)
 	else
 	{ 
         write(1, "\n", 1);
-        printf("%p\n", box->ptr);
-		//ft_exec(box->formaptr, head);
+		ft_exec(box->formaptr, head);
 		//print_da(box->formaptr);
         free_tformat();
         next_history_node(box);

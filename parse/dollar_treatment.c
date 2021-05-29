@@ -197,22 +197,30 @@ char    *dollar_treatment(char  **env, char *slice)
         if (i == -1)
             break ;
         data->dollar_position = i++;
-        if (slice[i] == '?')
+        if (ft_test_char("\'\"", slice[i]) == 1)
         {
-            data->variable_name = ft_strdup("?");
-            data->variable_content = ft_itoa(g_global.ret);
+            slice = ft_strjoin_dollar_sign(ft_substr(slice,0,i-2)
+            , ft_substr(slice,i, ft_strlen(slice)));
         }
         else
         {
-            data->variable_name = fetch_var_name(slice, i);
-            data->variable_content = fetch_variable_content(env, data->variable_name);
+            if (slice[i] == '?')
+            {
+                data->variable_name = ft_strdup("?");
+                data->variable_content = ft_itoa(g_global.ret);
+            }
+            else
+            {
+                data->variable_name = fetch_var_name(slice, i);
+                data->variable_content = fetch_variable_content(env, data->variable_name);
+            }
+            if (my_strcmp(data->variable_name, "") != 0)
+                slice = var_replacement(data, slice);
+            free(data->variable_name);
+            data->variable_name = NULL;
+            free(data->variable_content);
+            data->variable_content = NULL;\
         }
-        if (my_strcmp(data->variable_name, "") != 0)
-            slice = var_replacement(data, slice);
-        free(data->variable_name);
-        data->variable_name = NULL;
-        free(data->variable_content);
-        data->variable_content = NULL;
     }
     free(data);
     data =  NULL;
