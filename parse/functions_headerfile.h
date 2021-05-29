@@ -135,7 +135,7 @@ t_env               *fetch_all_variables(char **env);
 char                *ft_strdup(char     *str);
 char                *fetch_wanted_var(char    *name, t_env   *ptr);
 void                print_k(t_env   *ptr);
-char                *fetch_variable_content(char **env, char    *name);
+char                *fetch_variable_content(t_env *ptr, char    *name);
 char                *dollar_treatment(char  **env, char *slice);
 //--------dollar_treatment.c---------//
 
