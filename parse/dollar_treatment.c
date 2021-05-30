@@ -205,8 +205,11 @@ char    *dollar_treatment(char  **env, char *slice)
     t_var_rep *data;
     t_env   *ptr_env;
     char *kass;
+    char    *str;
+    int counter;
     ptr_env = fetch_all_variables(env);
     data = malloc(sizeof(t_var_rep));
+    counter = 0;
     if (data == NULL)
         return (NULL);
     while (slice[i] != 0)
@@ -219,7 +222,10 @@ char    *dollar_treatment(char  **env, char *slice)
         {
             kass = ft_strjoin_dollar_sign(ft_substr(slice,0,i-2)
             , ft_substr(slice,i, ft_strlen(slice)));
-            free(slice);
+            if (counter == 1)
+                free(slice);
+            else
+                counter = 1;
             slice = kass;
         }
         else
@@ -237,7 +243,10 @@ char    *dollar_treatment(char  **env, char *slice)
             if (my_strcmp(data->variable_name, "") != 0)
             {
                 kass = var_replacement(data, slice);
-                free(slice);
+                if (counter == 1)
+                    free(slice);
+                else
+                    counter = 1;
                 slice = kass;
             }
             free(data->variable_name);
