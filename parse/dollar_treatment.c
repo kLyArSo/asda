@@ -204,7 +204,7 @@ char    *dollar_treatment(char  **env, char *slice)
     int i = 0;
     t_var_rep *data;
     t_env   *ptr_env;
-
+    char *kass;
     ptr_env = fetch_all_variables(env);
     data = malloc(sizeof(t_var_rep));
     if (data == NULL)
@@ -217,8 +217,10 @@ char    *dollar_treatment(char  **env, char *slice)
         data->dollar_position = i++;
         if (ft_test_char("\'\"", slice[i]) == 1)
         {
-            slice = ft_strjoin_dollar_sign(ft_substr(slice,0,i-2)
+            kass = ft_strjoin_dollar_sign(ft_substr(slice,0,i-2)
             , ft_substr(slice,i, ft_strlen(slice)));
+            free(slice);
+            slice = kass;
         }
         else
         {
@@ -234,7 +236,9 @@ char    *dollar_treatment(char  **env, char *slice)
             }
             if (my_strcmp(data->variable_name, "") != 0)
             {
-                slice = var_replacement(data, slice);
+                kass = var_replacement(data, slice);
+                free(slice);
+                slice = kass;
             }
             free(data->variable_name);
             data->variable_name = NULL;
