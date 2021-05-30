@@ -137,26 +137,35 @@ void    cleanse_no_pipes(char        **env, t_format    *ptr)
 {
     t_arguments     *tmp_args;
     t_redirections  *tmp_redirections;
+    char *kass;
 
     //dollar_exceptions_no_pipes(env, ptr);
     if (ptr->command != NULL)
     {
-        ptr->command = dollar_treatment(env, ptr->command);//try strdup in arg and Kass for free
+        kass = dollar_treatment(env, ft_strdup(ptr->command));//try strdup in arg and Kass for free
+        free(ptr->command);
+        ptr->command = kass;
         //ptr->command = quote_slash(ptr->command);
     }
     tmp_args = ptr->arguments;
     while (tmp_args != NULL)
     {
-        tmp_args->arg = dollar_treatment(env,  tmp_args->arg);
+        kass = dollar_treatment(env,  ft_strdup(tmp_args->arg));
+        free(tmp_args->arg);
+        tmp_args->arg = kass;
         //tmp_args->arg = quote_slash( tmp_args->arg);
         tmp_args = tmp_args->next;
     }
     tmp_redirections = ptr->redirections;
     while (tmp_redirections != NULL)
     {
-        tmp_redirections->redirection_type = dollar_treatment(env,  tmp_redirections->redirection_type);
+        kass = dollar_treatment(env, ft_strdup(tmp_redirections->redirection type));
+        free(tmp_redirections->redirection_type);
+        tmp_redirections->redirection_type = kass;
         //tmp_redirections->redirection_type = quote_slash( tmp_redirections->redirection_type);
-        tmp_redirections->redirection_file = dollar_treatment(env,  tmp_redirections->redirection_file);
+        kass = dollar_treatment(env, ft_strdup(tmp_redirections->redirection file));
+        free(tmp_redirections->redirection_file);
+        tmp_redirections->redirection file = kass;
         //tmp_redirections->redirection_file = quote_slash( tmp_redirections->redirection_file);
         tmp_redirections = tmp_redirections->next;
     }
