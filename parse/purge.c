@@ -141,7 +141,7 @@ void    cleanse_no_pipes(char        **env, t_format    *ptr)
     //dollar_exceptions_no_pipes(env, ptr);
     if (ptr->command != NULL)
     {
-        ptr->command = dollar_treatment(env, ptr->command);
+        ptr->command = dollar_treatment(env, ptr->command);//try strdup in arg and Kass for free
         //ptr->command = quote_slash(ptr->command);
     }
     tmp_args = ptr->arguments;
