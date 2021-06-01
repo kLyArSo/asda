@@ -1,15 +1,5 @@
 #include "functions_headerfile.h"
 
-void    free_sliced_contents_yp(t_linedata *ptr)
-{
-    while   (ptr != NULL)
-    {
-        free(ptr->slice);
-        ptr->slice = NULL;
-        ptr = ptr->next;
-    }
-}
-
 void    free_sliced_nodes_yp(t_pipes *ptr)
 {
     t_linedata *tmp_1;
@@ -55,6 +45,32 @@ void    free_red_nodes_yp(t_pipes *ptr)
     ptr->redirections = NULL;
 }
 
+void    free_arg_contents_yp(t_pipes *ptr)
+{
+    t_arguments     *tmp_1;
+
+    tmp_1 = ptr->arguments;
+    while (tmp_1 != NULL)
+    {
+        free(tmp_1->arg);
+        tmp_1 = tmp_1->next;
+    }
+}
+
+void    free_red_contents_yp(t_pipes *ptr)
+{
+    t_redirections *tmp_1;
+
+    tmp_1 = ptr->redirections;
+    while (tmp_1 != NULL)
+    {
+        free(tmp_1->redirection_file);
+        tmp_1->redirection_file = NULL;
+        free(tmp_1->redirection_type);
+        tmp_1->redirection_type = NULL;
+        tmp_1 = tmp_1->next;
+    }
+}
 void    yes_pipes_free(t_format  *tmp)
 {
     t_pipes *ptr;
@@ -68,14 +84,23 @@ void    yes_pipes_free(t_format  *tmp)
             free(ptr->line);
             ptr->line = NULL;
         }
-        if (ptr->sliced_line != NULL)
-            free_sliced_contents_yp(ptr->sliced_line);
+        if (ptr->command != NULL)
+        {
+            free(ptr->command);
+            ptr->command = NULL;
+        }
         if (ptr->sliced_line != NULL)
             free_sliced_nodes_yp(ptr);
         if (ptr->arguments != NULL)
+        {
+            free_arg_contents_yp(ptr);
             free_arg_nodes_yp(ptr);
+        }
         if (ptr->redirections != NULL)
+        {
+            free_red_contents_yp(ptr);
             free_red_nodes_yp(ptr);
+        }
         ptr = ptr->next;
     }
     ptr = tmp->pipes;

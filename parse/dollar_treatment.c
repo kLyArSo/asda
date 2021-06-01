@@ -222,10 +222,7 @@ char    *dollar_treatment(char  **env, char *slice)
         {
             kass = ft_strjoin_dollar_sign(ft_substr(slice,0,i-2)
             , ft_substr(slice,i, ft_strlen(slice)));
-            if (counter == 1)
-                free(slice);
-            else
-                counter = 1;
+            free(slice);
             slice = kass;
         }
         else
@@ -243,10 +240,7 @@ char    *dollar_treatment(char  **env, char *slice)
             if (my_strcmp(data->variable_name, "") != 0)
             {
                 kass = var_replacement(data, slice);
-                if (counter == 1)
-                    free(slice);
-                else
-                    counter = 1;
+                free(slice);
                 slice = kass;
             }
             free(data->variable_name);
