@@ -107,6 +107,7 @@ void    cleanse_yes_pipes(char        **env, t_format    *ptr)
         tmp_pipes = tmp_pipes->next;
     }
 }
+
 int     dash_through_ws(char    *str)
 {
     int i;
@@ -213,6 +214,7 @@ void    cleanse_no_pipes(char        **env, t_format    *ptr)
         tmp_redirections = tmp_redirections->next;
     }
 }
+
 void    purge(char        **env, t_format    *ptr)
 {
     if (ptr->pipes == NULL)//no pipes

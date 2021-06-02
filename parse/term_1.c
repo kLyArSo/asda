@@ -100,6 +100,11 @@ void    down_key(t_toolbox   *box)
         free(box->str);
 	    box->str = ft_strdupe(box->ptr->line);
     }
+    if (box->ptr->next == NULL)
+    {
+        free(box->str);
+        box->str = my_calloc(1);
+    }
     put_strings(box->str,NULL,NULL,NULL);
 }
 
