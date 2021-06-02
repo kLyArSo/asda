@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayghazal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ayghazal <ayghazal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 23:50:36 by ayghazal          #+#    #+#             */
-/*   Updated: 2019/10/21 18:44:06 by ayghazal         ###   ########.fr       */
+/*   Updated: 2021/05/30 13:42:17 by ayghazal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_bzero(void *argv, size_t n)
 {
-	unsigned char *temp;
+	unsigned char	*temp;
 
 	temp = argv;
 	while (n--)

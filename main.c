@@ -49,7 +49,7 @@ void    *full_ws_niet(t_toolbox     *box, t_node    **head)
 	{ 
         write(1, "\n", 1);
 		ft_exec(box->formaptr, head);
-		print_da(box->formaptr);
+		//print_da(box->formaptr);
         free_tformat();
         next_history_node(box);
         put_strings("minishell~$ ",NULL,NULL,NULL);
@@ -61,13 +61,17 @@ void handler(int sig)
 {
     if (g_global.forked == 1)
     {
+        g_global.ret = 1;
         put_strings("\nminishell~$ ",NULL,NULL,NULL);
         free(g_global.box->str);
         g_global.box->str = NULL;
         g_global.box->str = my_calloc(1);
     }
     else if (g_global.forked == 0) //cat
+    {
+        g_global.ret = 130;
         ft_putchar_fd('\n', 1);
+    }
 }
 
 void    handler2(int sig)

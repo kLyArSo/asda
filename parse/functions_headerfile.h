@@ -118,6 +118,7 @@ typedef     struct  s_toolbox
 
 typedef struct s_global
 {
+    int stop;
     int forked;
     int p;
     int ret;
@@ -266,3 +267,5 @@ void                free_history();
 void                free_tformat();
 void                yes_pipes_free(t_format  *tmp);
 void                no_pipes_free(t_format  *ptr);
+void    free_env_contens(t_env   *ptr);
+void    free_env_nodes(t_env   *ptr);

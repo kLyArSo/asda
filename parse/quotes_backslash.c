@@ -73,6 +73,7 @@ void     treat_double_quote(char *slice, t_tools   *box)
 char    *quote_slash(char *slice)//replace t_line data with return value
 {
     t_tools     *box;
+    char *str;
 
     box = initialise_box(box, slice);
     while (slice[box->i] != 0)
@@ -91,5 +92,8 @@ char    *quote_slash(char *slice)//replace t_line data with return value
         treat_slash(slice, box);
         
     }
-    return (box->ret);
+    str = box->ret;
+    free(slice);
+    free(box);
+    return (str);
 }

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayghazal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ayghazal <ayghazal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 18:12:35 by ayghazal          #+#    #+#             */
-/*   Updated: 2019/10/29 01:04:52 by ayghazal         ###   ########.fr       */
+/*   Updated: 2021/05/30 13:50:39 by ayghazal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int			count(char const *s, char c)
+static int	count(char const *s, char c)
 {
-	int x;
-	int count;
+	int	x;
+	int	count;
 
 	x = 0;
 	count = 0;
@@ -33,9 +33,9 @@ static int			count(char const *s, char c)
 	return (count);
 }
 
-static int			len(char const *s, char c)
+static int	len(char const *s, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i] != '\0' && s[i] != c)
@@ -43,7 +43,7 @@ static int			len(char const *s, char c)
 	return (i);
 }
 
-static void			*ft_free(char ***temp, int i)
+static void	*ft_free(char ***temp, int i)
 {
 	char	**out;
 
@@ -58,7 +58,7 @@ static void			*ft_free(char ***temp, int i)
 	return (NULL);
 }
 
-char				**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**temp;
 	int		i;
@@ -68,13 +68,15 @@ char				**ft_split(char const *s, char c)
 		return (NULL);
 	i = 0;
 	cnt = count(s, c);
-	if (!(temp = (char **)ft_calloc(cnt + 1, sizeof(char *))))
+	temp = (char **)ft_calloc(cnt + 1, sizeof(char *));
+	if (!temp)
 		return (NULL);
 	while (cnt--)
 	{
 		while (*s != '\0' && *s == c)
 			s++;
-		if (!(temp[i] = m_substr(s, 0, len(s, c))))
+		temp[i] = m_substr(s, 0, len(s, c));
+		if (!temp[i])
 			return (ft_free(&temp, i));
 		s = s + len(s, c);
 		i++;

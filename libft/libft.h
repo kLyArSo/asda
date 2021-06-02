@@ -6,7 +6,7 @@
 /*   By: ayghazal <ayghazal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 19:21:26 by ayghazal          #+#    #+#             */
-/*   Updated: 2021/05/21 12:21:10 by ayghazal         ###   ########.fr       */
+/*   Updated: 2021/05/30 13:56:27 by ayghazal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ size_t		m_strlen(const char *s);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char		*m_substr(char const *s, unsigned int start, size_t len);
-char        *ft_itoa(int n);
+char		*ft_itoa(int n);
 #endif

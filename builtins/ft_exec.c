@@ -6,7 +6,7 @@
 /*   By: ayghazal <ayghazal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 12:17:49 by ayghazal          #+#    #+#             */
-/*   Updated: 2021/05/23 13:40:01 by ayghazal         ###   ########.fr       */
+/*   Updated: 2021/05/26 16:31:49 by ayghazal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int ft_exec(t_format *ptr, t_node **head)
     ret = 0;
     while(ptr != NULL)
     {
+        g_global.stop = 0;
         g_global.p = 0;
         tmp = convertenv(*head);
         purge(tmp, ptr);
@@ -77,6 +78,8 @@ int ft_exec(t_format *ptr, t_node **head)
             ft_setpipes(ptr->pipes, head);
         }
         ft_free_split(tmp);
+        if (g_global.stop == 5)
+            break;
         ptr = ptr->next;
     }
     return (0);

@@ -24,6 +24,8 @@ ssize_t     find_valid_dollar(char *slice)// returns index of the first valid do
             i++;
         if (ft_test_char("\'", slice[i]) == 1)
             i = skip_quotes(slice, i) + 1;
+        while (slice[i] == '$' && slice[i + 1] == '$')
+            i++;
         if (slice[i] == '$' && back_slash_presence(slice, i - 1) == 0)
             return (i);
         if (slice[i] != 0)
@@ -203,11 +205,13 @@ char    *dollar_treatment(char  **env, char *slice)
 {
     int i = 0;
     t_var_rep *data;
-    t_env   *ptr_env;
     char *kass;
     char    *str;
     int counter;
+
+    t_env   *ptr_env;
     ptr_env = fetch_all_variables(env);
+    
     data = malloc(sizeof(t_var_rep));
     counter = 0;
     if (data == NULL)

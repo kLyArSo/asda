@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayghazal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ayghazal <ayghazal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 11:20:49 by ayghazal          #+#    #+#             */
-/*   Updated: 2019/10/22 21:45:57 by ayghazal         ###   ########.fr       */
+/*   Updated: 2021/05/30 13:45:40 by ayghazal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char *temp1;
-	char *temp2;
+	char	*temp1;
+	char	*temp2;
 
 	temp1 = (char *)src;
 	temp2 = (char *)dst;
