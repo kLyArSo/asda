@@ -110,11 +110,14 @@ void    down_key(t_toolbox   *box)
 
 void    ctrl_d_key(t_toolbox   *box)
 {
-    if(my_strcmp(box->str, "") == 0)
+    if (my_strcmp(box->str, "") == 0)
     {
         tcsetattr(0, TCSANOW, &box->old);
         put_strings("\nexit\n",NULL,NULL,NULL);
         g_global.ret = 0;
+        free(box->str);
+        free_tformat();
+        free_history();
 	    exit(0);
     }
 }
