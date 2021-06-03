@@ -128,7 +128,7 @@ typedef struct s_global
 t_global g_global;
 //--------dollar_treatment_funtions---------//
 char	*dollar_treatment(char	**env, char	*slice);
-int	test_c(char	c);
+int	    test_c(char	c);
 ssize_t	find_valid_dollar(char	*slice);
 char	*fetch_var_name(char *slice, int i);
 char	*ft_strjoin_dollar_sign(char	*s1, char	*s2);
@@ -257,6 +257,7 @@ int                 put_char(int c);
 char	            *delete_char(char	*str);
 int		            all_sp(char	*str);
 //-----------------term.c----------------//
+
 //------------------utils.c--------------//
 int                 ft_test_char(char   *str, char c);
 int                 is_white_space(char c);
@@ -277,5 +278,10 @@ void                free_history();
 void                free_tformat();
 void                yes_pipes_free(t_format  *tmp);
 void                no_pipes_free(t_format  *ptr);
-void    free_env_contens(t_env   *ptr);
-void    free_env_nodes(t_env   *ptr);
+void                free_env_contens(t_env   *ptr);
+void                free_env_nodes(t_env   *ptr);
+
+void	free_sliced_contents(t_linedata	*ptr);
+void	free_sliced_nodes(t_format	*ptr);
+void	free_red_nodes(t_format	*ptr);
+void	free_arg_nodes(t_format	*ptr);
