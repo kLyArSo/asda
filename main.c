@@ -34,6 +34,7 @@ void    shlvl(t_node **head)
 
 void    *full_ws_niet(t_toolbox     *box, t_node    **head)
 {
+    char **tmp;
 	box->check = parse(box);
 	if (my_strcmp(box->check, "Unmatched_Quotes") == 0
 	|| my_strcmp(box->check, "Back_slash_Error") == 0
@@ -49,6 +50,9 @@ void    *full_ws_niet(t_toolbox     *box, t_node    **head)
 	{ 
         write(1, "\n", 1);
 		ft_exec(box->formaptr, head);
+        //tmp = convertenv(*head);
+        //purge(tmp, box->formaptr);
+        //ft_free_split(tmp);
 		//print_da(box->formaptr);
         free_tformat();
         next_history_node(box);

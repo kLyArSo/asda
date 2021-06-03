@@ -70,6 +70,7 @@ int ft_exec(t_format *ptr, t_node **head)
         g_global.p = 0;
         tmp = convertenv(*head);
         purge(tmp, ptr);
+        ft_free_split(tmp);
         if(ptr->pipes == NULL)
             ft_exec_cmd(ptr->command, ptr->arguments, ptr->redirections, head);
         else if (ptr->pipes)
@@ -77,7 +78,6 @@ int ft_exec(t_format *ptr, t_node **head)
             g_global.p = 5;
             ft_setpipes(ptr->pipes, head);
         }
-        ft_free_split(tmp);
         if (g_global.stop == 5)
             break;
         ptr = ptr->next;

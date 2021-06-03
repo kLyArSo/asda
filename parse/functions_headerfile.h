@@ -286,3 +286,7 @@ void	free_sliced_contents(t_linedata	*ptr);
 void	free_sliced_nodes(t_format	*ptr);
 void	free_red_nodes(t_format	*ptr);
 void	free_arg_nodes(t_format	*ptr);
+void	free_arg_contents_yp(t_pipes	*ptr);
+void	free_red_nodes_yp(t_pipes	*ptr);
+void	free_arg_nodes_yp(t_pipes	*ptr);
+void	free_sliced_nodes_yp(t_pipes	*ptr);
