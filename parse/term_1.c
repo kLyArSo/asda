@@ -116,7 +116,7 @@ void    ctrl_d_key(t_toolbox   *box)
         put_strings("\nexit\n",NULL,NULL,NULL);
         g_global.ret = 0;
         free(box->str);
-        free_tformat();
+        //free_tformat();
         free_history();
 	    exit(0);
     }

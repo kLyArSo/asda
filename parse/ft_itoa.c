@@ -1,6 +1,6 @@
 #include "functions_headerfile.h"
 
-int			check_neg(int n)
+int	check_neg(int n)
 {
 	if (n < 0)
 		return (1);
@@ -8,9 +8,9 @@ int			check_neg(int n)
 		return (0);
 }
 
-int			ft_counter(int n)
+int	ft_counter(int n)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (n / 10 != 0)
@@ -21,7 +21,7 @@ int			ft_counter(int n)
 	return (i);
 }
 
-char		*ft_printneg(unsigned int nb, char *s, int k)
+char	*ft_printneg(unsigned int nb, char *s, int k)
 {
 	if (s == NULL)
 		return (NULL);
@@ -38,7 +38,7 @@ char		*ft_printneg(unsigned int nb, char *s, int k)
 	return (s);
 }
 
-char		*ft_print_pos(int nb, char *s, int j)
+char	*ft_print_pos(int nb, char *s, int j)
 {
 	if (s == NULL)
 		return (NULL);
@@ -53,7 +53,7 @@ char		*ft_print_pos(int nb, char *s, int j)
 	return (s);
 }
 
-char				*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	unsigned int	i;
 	int				k;

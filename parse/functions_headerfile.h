@@ -126,28 +126,38 @@ typedef struct s_global
 }               t_global;
 
 t_global g_global;
-//--------dollar_treatment.c---------//
-int                 test_c(char c);
-ssize_t             find_valid_dollar(char *slice);
-char                *fetch_var_name(char *slice, int i);
-char                *var_replacement(t_var_rep *data, char  *slice);
-ssize_t             equal_sign(char     *str);
-t_env               *fetch_all_variables(char **env);
-char                *ft_strdup(char     *str);
-char                *fetch_wanted_var(char    *name, t_env   *ptr);
-void                print_k(t_env   *ptr);
-char                *fetch_variable_content(t_env *ptr, char    *name);
-char                *dollar_treatment(char  **env, char *slice);
+//--------dollar_treatment_funtions---------//
+char	*dollar_treatment(char	**env, char	*slice);
+int	test_c(char	c);
+ssize_t	find_valid_dollar(char	*slice);
+char	*fetch_var_name(char *slice, int i);
+char	*ft_strjoin_dollar_sign(char	*s1, char	*s2);
+char	*var_replacement(t_var_rep	*data, char		*slice);
+ssize_t	equal_sign(char		*str);
+void	not_equ_m_one(t_env		*ptr, char	**env, int	i, int	equ);
+void	equ_m_one(t_env		*ptr, char	**env, int	i);
+t_env	*fetch_all_variables(char	**env);
+char	*ft_strdup(char	*str);
+char	*fetch_wanted_var(char	*name, t_env	*ptr);
+char	*fetch_variable_content(t_env	*ptr, char	*name);
+void	free_env_contens(t_env	*ptr);
+void	free_env_nodes(t_env	*ptr);
+void	dollar_freedom_1(t_var_rep	*data, t_env	*ptr_env);
+void	var_freedom(t_var_rep	*data);
+void	var_fetch(t_var_rep		*data, char	*slice, int	i, t_env	*ptr_env);
+void	set_glob(t_var_rep		*data, char		*slice);
+char	*quotes_post_dollar(char	*slice, int		i);
+char	*final_fetch(t_var_rep	*data, char	*slice, int	i, t_env	*ptr_env);
 //--------dollar_treatment.c---------//
 
 //------------error_check.c----------//
-int                 quotes_err(char     *input, int i);
-int                 da_loop(char    *input, int i);
-int                 tri(char    *input, int i, char **str);
-char                *error_check(char    *input);
-int                 parse_error_check(char *input, int i);
-int                 redirection_error_check(char *input, int i);
-int                 error_suite(int counter, char   *input, int i, char *str);
+int	quotes_err(char		*input, int		i);
+int	da_loop(char	*input, int	i);
+char	*error_check(char	*input);
+int	tri(char	*input, int		i, char	**str);
+int	parse_error_check(char	*input, int	i);
+int	redirection_error_check(char *input, int i);
+int	error_suite(int	counter, char	*input, int	i, char	*str);
 //------------error_check.c----------//
 
 //------------fetch_input.c----------//
