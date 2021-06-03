@@ -6,7 +6,7 @@ void        *dollar_exception_yes_pipes(char        **env, t_format    *rtp)
     t_arguments     *arg_ptr;
     char            *kass;
     t_pipes         *ptr;
-    t_env   *ptr_env;
+    t_env           *ptr_env;
 
     ptr_env = fetch_all_variables(env);
     data = malloc(sizeof(t_var_rep));
@@ -67,6 +67,7 @@ void        *dollar_exception_yes_pipes(char        **env, t_format    *rtp)
         }
         ptr = ptr->next;
     }
+    free(data);
     free_env_contens(ptr_env);
     free_env_nodes(ptr_env);
     ptr_env = NULL;
@@ -189,12 +190,11 @@ void    cleanse_no_pipes(char        **env, t_format    *ptr)
 {
     t_arguments     *tmp_args;
     t_redirections  *tmp_redirections;
-    char *kass;
 
     dollar_exceptions_no_pipes(env, ptr);
     if (ptr->command != NULL)
     {
-        ptr->command = dollar_treatment(env, ptr->command);//try strdup in arg and Kass for free
+        ptr->command = dollar_treatment(env, ptr->command);
         ptr->command = quote_slash(ptr->command);
     }
     tmp_args = ptr->arguments;

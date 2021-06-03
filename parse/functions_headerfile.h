@@ -192,19 +192,20 @@ char                *parse(t_toolbox    *box);
 //--------------parse.c--------------//
 
 //--------------pipes.c---------------//
-int                 pipe_presence(char *input);
-char                *fetch_command(t_linedata *data);
-t_arguments         *f_16(t_arguments     *ptr, t_linedata *data);
-t_arguments         *fetch_arguments(t_linedata *data, t_arguments *ret, int counter);
-t_linedata          *a_s(t_linedata *data, t_redirections     *ptr);
-t_redirections      *fetch_redirection(t_linedata *data, t_redirections *ret, int counter);
-t_pipes             *f2(t_format    *ptr, int *start, int i);
-void                f3(t_format    *ptr, int start, int i);
-int                 skips(t_format    *ptr, int i);
-void                ft_end(t_format    *ptr, int *i, int start);
-void                *fetch_pipes(t_format    *ptr, int start, int i);
-void                assignments(t_format    *ptr);
-void                *pipe_split(t_format    *ptr);
+int	            pipe_presence(char	*input);
+char	        *fetch_command(t_linedata	*data);
+t_arguments	    *f_16(t_arguments	*ptr, t_linedata	*data);
+t_arguments	    *fetch_arguments(t_linedata	*data, t_arguments	*ret, int	counter);
+t_linedata	    *a_s(t_linedata	*data, t_redirections	*ptr);
+t_redirections	*fetch_reds(t_linedata	*d, t_redirections	*r, int	c);
+t_pipes	        *f2(t_format	*ptr, int	*start, int	i);
+void	        f3(t_format	*ptr, int	start, int	i);
+int	            skips(t_format	*ptr, int	i);
+void	        ft_end(t_format	*ptr, int	*i, int	start);
+void	        *fetch_pipes(t_format	*ptr, int	start, int	i);
+void	        assignments(t_format	*ptr);
+void	        *pipe_split(t_format	*ptr);
+
 //--------------pipes.c---------------//
 void                print_da(t_format    *ptr);//DONT NORM IT
 
@@ -228,7 +229,6 @@ char                *trim_spaces(char *input);
 void                skip_un(char    *input, int i, int *a);
 t_format            *fetch(t_format    *ptr, char   *input, int    *start, int i);
 void                *semicolon_split(t_format    *ptr, char     *input);
-void                printf_individual_lines(t_format    *ptr);
 char                *last_check(t_toolbox *box);
 //-------------semi_split.c-------------//
 
@@ -274,6 +274,7 @@ static	char		*ft_printneg(unsigned int nb, char *s, int k);
 static	int			ft_counter(int n);
 static	int			check_neg(int n);
 //---------------------ft_itoa.c----------//
+
 void                free_history();
 void                free_tformat();
 void                yes_pipes_free(t_format  *tmp);

@@ -43,13 +43,13 @@ char	*parse(t_toolbox	*box)
 	ptr = box->formaptr;
 	if (ptr == NULL
 		|| box->str == NULL
-			|| my_strcmp(box->str, "") == 0)
+		|| my_strcmp(box->str, "") == 0)
 		return (NULL);
-	str = error_check(box->str);//all good here
+	str = error_check(box->str);
 	if (my_strcmp(str, "Unmatched_Quotes") == 0
 		|| my_strcmp(str, "Redirection_error") == 0
-			|| my_strcmp(str, "Syntax_error") == 0
-				|| my_strcmp(str, "Back_slash_Error") == 0)
+		|| my_strcmp(str, "Syntax_error") == 0
+		|| my_strcmp(str, "Back_slash_Error") == 0)
 		return (str);
 	else
 	{
