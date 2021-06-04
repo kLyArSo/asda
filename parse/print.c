@@ -1,5 +1,5 @@
 #include "functions_headerfile.h"
-
+/*
 void    print_args(t_arguments   *ptr)//DONT NORM IT
 {
     if (ptr != NULL)
@@ -66,3 +66,4 @@ void    print_da(t_format    *ptr)//DONT NORM IT
         ptr = ptr->next;
     }
 }
+*/

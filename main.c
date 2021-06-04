@@ -50,10 +50,6 @@ void    *full_ws_niet(t_toolbox     *box, t_node    **head)
 	{ 
         write(1, "\n", 1);
 		ft_exec(box->formaptr, head);
-        //tmp = convertenv(*head);
-        //purge(tmp, box->formaptr);
-        //ft_free_split(tmp);
-		//print_da(box->formaptr);
         free_tformat();
         next_history_node(box);
         put_strings("minishell~$ ",NULL,NULL,NULL);

@@ -39,10 +39,9 @@ void	ctrl_d_key(t_toolbox	*box)
 	{
 		tcsetattr(0, TCSANOW, &box->old);
 		put_strings("\nexit\n", NULL, NULL, NULL);
-		g_global.ret = 0;
 		free(box->str);
 		free_history();
-		exit(0);
+		exit(g_global.ret);
 	}
 }
 
