@@ -29,7 +29,6 @@ void	*dollar_exceptions_no_pipes(char	**env, t_format	*ptr)
 {
 	t_var_rep	*data;
 	t_arguments	*arg_ptr;
-	char		*kass;
 	t_env		*ptr_env;
 
 	ptr_env = fetch_all_variables(env);

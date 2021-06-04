@@ -15,7 +15,7 @@ void	var_fetch(t_var_rep		*data, char	*slice, int	i, t_env	*ptr_env)
 			data->variable_name);
 }
 
-void	set_glob(t_var_rep		*data, char		*slice)
+void	set_glob(t_var_rep		*data)
 {
 	data->variable_name = ft_strdup("?");
 	data->variable_content = ft_itoa(g_global.ret);
@@ -42,7 +42,7 @@ char	*final_fetch(t_var_rep	*data, char	*slice, int	i, t_env	*ptr_env)
 	else
 	{
 		if (slice[i] == '?')
-			set_glob(data, slice);
+			set_glob(data);
 		else
 			var_fetch(data, slice, i, ptr_env);
 		if (my_strcmp(data->variable_name, "") != 0)

@@ -27,14 +27,12 @@ void	data_init0(t_bag	*data)
 	data->cmd_check = 0;
 }
 
-t_tools	*initialise_box(t_tools	*box, char	*slice)
+void	initialise_box(t_tools	*box, char	*slice)
 {
-	box = malloc(sizeof(t_tools));
 	box->i = 0;
 	box->j = 0;
 	box->n = 0;
 	box->counter = 0;
 	box->len = ft_strlen(slice) + 1;
 	box->ret = my_calloc(box->len);
-	return (box);
 }

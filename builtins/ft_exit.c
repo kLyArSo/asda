@@ -6,7 +6,7 @@
 /*   By: ayghazal <ayghazal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 12:42:44 by ayghazal          #+#    #+#             */
-/*   Updated: 2021/06/02 14:29:10 by ayghazal         ###   ########.fr       */
+/*   Updated: 2021/06/03 12:03:23 by ayghazal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_isnumeric(char *s)
 
 void	exit_error(char *s)
 {
-	fd_putstr(2, "minishell: exit: ", s, ": numeric argument required\n", NULL);
+	fd_putstr("minishell: exit: ", s, ": numeric argument required\n", NULL);
 }
 
 int	ft_exit(t_arguments *arguments)

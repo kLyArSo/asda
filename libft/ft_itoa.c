@@ -6,7 +6,7 @@
 /*   By: ayghazal <ayghazal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 20:04:54 by ayghazal          #+#    #+#             */
-/*   Updated: 2021/05/30 13:44:47 by ayghazal         ###   ########.fr       */
+/*   Updated: 2021/06/03 16:43:14 by ayghazal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,29 @@ static int	size(int nb)
 
 char	*ft_itoa(int n)
 {
-	unsigned int		nb;
-	int					len;
-	char				*res;
+	t_itvar	var;
 
-	len = size(n);
-	res = (char *)malloc(len + 1);
-	if (!res)
-		return (NULL);
-	res[len] = '\0';
-	if (n < 0 && (nb = -n) != 0)
-		res[0] = '-';
+	var.len = size(n);
+	var.res = (char *)malloc(var.len + 1);
+	var.res[var.len] = '\0';
+	if (n < 0)
+	{
+		var.nb = -n;
+		if (var.nb != 0)
+			var.res[0] = '-';
+	}
 	else if (n == 0)
 	{
-		res[0] = 48;
-		return (res);
+		var.res[0] = 48;
+		return (var.res);
 	}
 	else
-		nb = n;
-	len = len - 1;
-	while (nb)
+		var.nb = n;
+	var.len = var.len - 1;
+	while (var.nb)
 	{
-		res[len--] = (nb % 10) + '0';
-		nb = nb / 10;
+		var.res[var.len--] = (var.nb % 10) + '0';
+		var.nb = var.nb / 10;
 	}
-	return (res);
+	return (var.res);
 }

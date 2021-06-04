@@ -13,7 +13,6 @@ int	test_c(char	c)
 ssize_t	find_valid_dollar(char	*slice)
 {
 	int		i;
-	char	c;
 
 	i = 0;
 	while (slice[i] != 0)

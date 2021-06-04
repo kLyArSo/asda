@@ -2,6 +2,7 @@
 
 void	*enter_key(t_toolbox	*box, t_node	**head)
 {
+	tcsetattr(0, TCSANOW, &box->old);
 	if (my_strcmp(box->str, "") != 0)
 	{
 		box->i = all_sp(box->str);

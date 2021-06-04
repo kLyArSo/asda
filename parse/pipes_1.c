@@ -3,7 +3,6 @@
 int	pipe_presence(char	*input)
 {
 	int		i;
-	char	c;
 
 	i = 0;
 	while (input[i] != 0)

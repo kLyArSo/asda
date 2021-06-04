@@ -6,7 +6,7 @@
 /*   By: ayghazal <ayghazal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 12:30:28 by ayghazal          #+#    #+#             */
-/*   Updated: 2021/06/02 14:17:48 by ayghazal         ###   ########.fr       */
+/*   Updated: 2021/06/02 19:15:31 by ayghazal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ void	update_pwd(t_node **head)
 	push_node(head, tmp);
 	free(tmp);
 	cwd = getcwd(NULL, 0);
-	tmp = ft_strjoin("PWD=", cwd);
+	if (cwd)
+		tmp = ft_strjoin("PWD=", cwd);
+	else
+		return (pwd_error());
 	if (i == 1)
 		deletenode(head, "PWD");
 	push_node(head, tmp);

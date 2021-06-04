@@ -6,7 +6,7 @@
 /*   By: ayghazal <ayghazal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 19:21:26 by ayghazal          #+#    #+#             */
-/*   Updated: 2021/05/30 13:56:27 by ayghazal         ###   ########.fr       */
+/*   Updated: 2021/06/03 16:40:27 by ayghazal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,14 @@
 # include <string.h>
 # include <unistd.h>
 
-char		**ft_split(char const *s, char c);
+typedef struct s_itvar
+{
+	unsigned int		nb;
+	int					len;
+	char				*res;
+}				t_itvar;
 
+char		**ft_split(char const *s, char c);
 int			ft_atoi(const char *str);
 void		ft_bzero(void *argv, size_t n);
 void		*ft_calloc(size_t count, size_t size);

@@ -76,7 +76,8 @@ char	*quote_slash(char	*slice)
 	t_tools		*box;
 	char		*str;
 
-	box = initialise_box(box, slice);
+	box = malloc(sizeof(t_tools));
+	initialise_box(box, slice);
 	while (slice[box->i] != 0)
 	{
 		while (ft_test_char("\'\"", slice[box->i]) == 1
