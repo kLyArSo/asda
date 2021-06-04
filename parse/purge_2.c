@@ -45,7 +45,7 @@ void	*dollar_exceptions_no_pipes(char	**env, t_format	*ptr)
 				return (NULL);
 		}
 		else
-			fetch_contenta(data, ptr_env, ptr);
+			free_contenta(data);
 	}
 	last_freea(data, ptr_env);
 	return (NULL);
