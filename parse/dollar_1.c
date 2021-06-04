@@ -25,8 +25,8 @@ ssize_t	find_valid_dollar(char	*slice)
 			i++;
 		if (ft_test_char("\'", slice[i]) == 1)
 			i = skip_quotes(slice, i) + 1;
-		while (slice[i] == '$' && slice[i + 1] == '$')
-			i++;
+		if (slice[i] == '$' && slice[i + 1] == '$')
+			rep_dollar(slice, i);
 		if (slice[i] == '$' && back_slash_presence(slice, i - 1) == 0)
 			return (i);
 		if (slice[i] != 0)

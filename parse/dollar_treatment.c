@@ -1,5 +1,26 @@
 #include "functions_headerfile.h"
 
+void	rep_dollar(char	*slice, int i)
+{
+	int	x;
+
+	x = 1;
+	while (slice[i] == '$' && slice[i + 1] == '$')
+	{
+		if (x == 1)
+		{
+			slice[i] = '?';
+			x = 2;
+		}
+		else if (x == 2)
+		{
+			slice[i] = '!';
+			x = 1;
+		}
+		i++;
+	}
+}
+
 char	*dollar_treatment(char	**env, char	*slice)
 {
 	int			i;

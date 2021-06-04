@@ -273,5 +273,6 @@ void				*dollar_exceptions_no_pipes(char	**env, t_format	*ptr);
 void				free_contenta(t_var_rep	*data);
 void				fetch_contenta(t_var_rep	*d, t_env	*p, t_format	*t);
 void				last_freea(t_var_rep	*data, t_env	*ptr_env);
+void				rep_dollar(char	*slice, int i);
 
 #endif
